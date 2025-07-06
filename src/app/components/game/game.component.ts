@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Game } from 'phaser';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-game',
@@ -29,6 +30,13 @@ export class GameComponent implements OnInit {
   ngOnInit(): void {
     this.phaserGame = new Phaser.Game(this.config);
   }
+
+  start() {
+    Swal.fire('Start?', 'No turning back after starting', 'question')
+      .then(() => {
+        Swal.fire('Jk MWEHEHEHEHEH😅', 'Just kidding!', 'warning');
+      });
+  }
 }
 
 class MainScene extends Phaser.Scene {
@@ -52,7 +60,6 @@ class MainScene extends Phaser.Scene {
     const cat = this.add.sprite(100, 100, 'cat');
     cat.anims.play('cat_tail');
     cat.setScale(4).setPosition(600, 500);
-
   }
 
   preload() {
