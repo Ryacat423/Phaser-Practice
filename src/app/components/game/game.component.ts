@@ -9,7 +9,7 @@ import { Game } from 'phaser';
 })
 export class GameComponent implements OnInit {
 
-  phaserGame: Phaser.Game = new Game;
+  phaserGame!: Phaser.Game;
   config: Phaser.Types.Core.GameConfig;
 
   constructor() {
@@ -37,14 +37,14 @@ class MainScene extends Phaser.Scene {
   }
 
   create() {
-    console.log("create method");
+    console.log('create method');
   }
 
   preload() {
     console.log('preload method');
   }
 
-  override update() {
-    console.log('update method');
-  }
+  // override update() {
+  //   console.log('update method');
+  // }
 }
