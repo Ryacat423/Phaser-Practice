@@ -18,7 +18,7 @@ export class GameComponent implements OnInit {
     this.config = {
       type: Phaser.AUTO,
       height: 600,
-      width: 800,
+      width: 1000,
       scene: [ WelcomeScene ],
       parent: 'game',
       backgroundColor: "#18216D",

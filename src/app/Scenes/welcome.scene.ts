@@ -8,13 +8,7 @@ export class WelcomeScene extends Phaser.Scene {
     const centerX = this.scale.width / 2;
     const centerY = this.scale.height / 2;
     const bg_music = this.sound.add('welcome_bg');
-    // bg_music.play({ volume: 0, loop: true });
-    // this.tweens.add({
-    //   targets: bg_music,
-    //   volume: .3,
-    //   duration: 2000
-    // });
-    
+    bg_music.play();
     this.add.image(0, 0, 'bg')
       .setOrigin(0, 0)
       .setDisplaySize(this.scale.width, this.scale.height);
@@ -22,7 +16,7 @@ export class WelcomeScene extends Phaser.Scene {
     const title = this.add.image(centerX, centerY - 30, 'title')
       .setDisplaySize(700,380);
     const button = this.add.image(centerX, centerY + 50, 'button')
-      .setScale(.3)
+      .setScale(.2)
 
     this.catIdleSprite();
     this.tweens.add({
@@ -39,7 +33,7 @@ export class WelcomeScene extends Phaser.Scene {
     button.on('pointerover', () => {
       this.tweens.add({
         targets: button,
-        scale: 0.35,
+        scale: 0.27,
         duration: 100,
         ease: 'Power1'
       });
@@ -48,7 +42,7 @@ export class WelcomeScene extends Phaser.Scene {
     button.on('pointerout', () => {
       this.tweens.add({
         targets: button,
-        scale: 0.3,
+        scale: 0.2,
         duration: 100,
         ease: 'Power1'
       });
@@ -59,7 +53,7 @@ export class WelcomeScene extends Phaser.Scene {
       frames: this.anims.generateFrameNumbers('cat_box', {
         frames: [1,2,3,4,5,6]
       }),
-      frameRate: 12,
+      frameRate: 6,
       repeat: -1
     });
     this.add.sprite(70, 530, 'cat_box')
@@ -67,6 +61,30 @@ export class WelcomeScene extends Phaser.Scene {
       .setFlipX(true)
       .play('box');
     
+    this.anims.create({
+      key: 'heart',
+      frames: this.anims.generateFrameNumbers('cat_love', {
+        start: 0,
+        end: 43
+      }),
+      frameRate: 12,
+      repeat: -1
+    });
+  
+    this.anims.create({
+      key: 'fall',
+      frames: this.anims.generateFrameNumbers('leaves', {
+        start: 0,
+        end: 24
+      }),
+      frameRate: 14,
+      repeat: -1
+    });
+
+    // this.add.sprite(0,0, 'leaves')
+    //   .setOrigin(0, 0)
+    //   .setDisplaySize(this.scale.width, this.scale.height)
+    //   .play('fall');
   }
 
   preload() {
@@ -84,6 +102,18 @@ export class WelcomeScene extends Phaser.Scene {
       frameHeight: 150,
       endFrame: 6
     });
+
+    this.load.spritesheet('leaves', 'assets/sprites/leaves.png', {
+      frameWidth: 312,
+      frameHeight: 224,
+      endFrame: 25
+    });
+
+    // this.load.spritesheet('cat_love', 'assets/sprites/cat_love.png', {
+    //   frameWidth: 400,
+    //   frameHeight: 400,
+    //   endFrame: 44
+    // });
 
     this.load.audio('welcome_bg', 'assets/audio/welcome_bg.mp3');
   }
@@ -112,7 +142,7 @@ export class WelcomeScene extends Phaser.Scene {
       repeat: 0
     });
 
-    const cat = this.add.sprite(705, 550, 'cat_idle')
+    const cat = this.add.sprite(805, 550, 'cat_idle')
       .setScale(1.8)
       .play('idle');
     const scheduleBlink = () => {
