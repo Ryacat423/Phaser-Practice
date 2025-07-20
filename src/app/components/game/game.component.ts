@@ -22,7 +22,7 @@ export class GameComponent implements OnInit {
       scene: [ WelcomeScene ],
       parent: 'game',
       backgroundColor: "#18216D",
-      pixelArt: true,
+      pixelArt: false,
       physics: {
         default: 'arcade'
       }
